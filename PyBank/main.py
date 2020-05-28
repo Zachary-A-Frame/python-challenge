@@ -13,6 +13,7 @@ import os
 import csv
 
 budget_csv = os.path.join("./", "Resources", "budget.csv")
+output_path = os.path.join("./", "analysis", "analysis.csv")
 
 with open(budget_csv, 'r') as csvfile:
 
@@ -55,6 +56,12 @@ with open(budget_csv, 'r') as csvfile:
         
     average = int(netTotal/totalRows)
 
+    with open(output_path, 'w') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',')
+        
+        csvwriter.writerow(['Total Months','Total', 'Average Change', 'Greatest Increase in profits', 'Greatest Decrease in profits'])
+        csvwriter.writerow([totalRows, netTotal, average, largestDate + ':' + str(largest), smallestDate + str(smallest)])
+        
 
     # Python is indent-sensitive; this code executes after our for loop and if statement.    
     print("Financial Analysis")
@@ -67,3 +74,7 @@ with open(budget_csv, 'r') as csvfile:
     print("Greatest Increase in Profits: " + " " + largestDate + " ($" + str(largest) + ")")
     print("Greatest Decrease in Profits: " + " " + smallestDate + " ($" + str(smallest) + ")")
 
+
+
+
+    
