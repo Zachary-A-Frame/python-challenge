@@ -16,7 +16,7 @@
 
 * Push the above changes to GitHub or GitLab.
 
-## PyBank
+## PyBank (Complete)
 
 
 * In this challenge, you are tasked with creating a Python script for analyzing the financial records of your company. You will give a set of financial data called [budget_data.csv](PyBank/Resources/budget_data.csv). The dataset is composed of two columns: `Date` and `Profit/Losses`. (Thankfully, your company has rather lax standards for accounting so the records are simple.)
@@ -47,7 +47,7 @@
 
 * In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
-## PyPoll
+## PyPoll (Complete)
 
 ![Vote Counting](Images/Vote_counting.png)
 
