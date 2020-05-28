@@ -2,7 +2,7 @@ import os
 import csv
 
 election_csv = os.path.join("./", "Resources", "election_data.csv")
-# output_path = os.path.join("./", "analysis", "analysis.csv")
+output_path = os.path.join("./", "analysis", "analysis.csv")
 
 with open(election_csv, 'r') as csvfile:
 
@@ -39,9 +39,16 @@ with open(election_csv, 'r') as csvfile:
         liPercent = int(liVotes / totalVotes * 100)
         tooleyPercent = int(tooleyVotes / totalVotes * 100)
         
-        winner = "Khan"
+        winner = ""
         
-        
+        if khanVotes > correyVotes and khanVotes > liVotes and khanVotes > tooleyVotes:
+            winner = "Khan"
+        elif correyVotes > khanVotes and correyVotes > liVotes and correyVotes > tooleyVotes:
+            winner = "Correy"
+        elif liVotes > khanVotes and liVotes > correyVotes and liVotes > tooleyVotes:
+            winner = "Li"
+        else:
+            winner = "O'Tooley"
         
         
         
@@ -56,43 +63,13 @@ with open(election_csv, 'r') as csvfile:
     print("----------------------------------------------------------------")
     print("WINNER: " + winner)
 
-
-        
-        
+    with open(output_path, 'w') as csvfile:
+           csvwriter = csv.writer(csvfile, delimiter=',')
             
-        # Here we're calculating our net total.
-        #if row[1]:
-        #    netTotal = netTotal + int(row[1])
+           csvwriter.writerow(['Total Votes','Khan Votes', 'Khan Percentage Votes', 'Correy Votes', 'Correy Percentage Votes', 'Li Votes',
+                               'Li Percentage Votes', "O'Tooley Votes", "O'Tooley Percentage Votes", 'WINNER: ' ])
+           csvwriter.writerow([totalVotes, khanVotes, khanPercent, correyVotes, correyPercent, liVotes, liPercent, tooleyVotes, tooleyPercent, winner])
         
-       # if int(row[1]) < smallest:
-        #    smallest = int(row[1])
-        #    smallestDate = str(row[0])
         
-       # if int(row[1]) > largest:
-       #     largest = int(row[1])
-       #     largestDate = str(row[0])
-    
-        #minnum = min([row for value in csvreader])
-        # Smallest number in a column.
         
-    #average = int(netTotal/totalRows)
-
-    #with open(output_path, 'w') as csvfile:
-    #    csvwriter = csv.writer(csvfile, delimiter=',')
-        
-   #    csvwriter.writerow(['Total Months','Total', 'Average Change', 'Greatest Increase in profits', 'Greatest Decrease in profits'])
-   #     csvwriter.writerow([totalRows, netTotal, average, largestDate + ':' + str(largest), smallestDate + str(smallest)])
-        
-
-    # Python is indent-sensitive; this code executes after our for loop and if statement.    
-   # print("Financial Analysis")
-   # print("---------------------------------------------------------")
-        
-   # print("Total Months: " + str(totalRows))
-   # print("Net profits / losses: " + str(netTotal))
-    #print("Average Change: " + str(average))
-
-    #print("Greatest Increase in Profits: " + " " + largestDate + " ($" + str(largest) + ")")
-    #print("Greatest Decrease in Profits: " + " " + smallestDate + " ($" + str(smallest) + ")")
-
-
+     
